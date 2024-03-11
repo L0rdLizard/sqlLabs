@@ -1,4 +1,0 @@
-ALTER TABLE Form
-ADD FOREIGN KEY (reader_ticket_id) REFERENCES Reader_ticket (id) ON DELETE CASCADE,
-ADD FOREIGN KEY (book_id) REFERENCES Book (id) ON DELETE CASCADE;
-
