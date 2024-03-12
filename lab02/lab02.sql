@@ -25,16 +25,16 @@ CREATE TABLE BookAuthor
 (
     book_id   INT NOT NULL,
     author_id INT NOT NULL,
-    FOREIGN KEY (book_id) REFERENCES Book (id),
-    FOREIGN KEY (author_id) REFERENCES Author (id)
+    CONSTRAINT fk_bookAuthor_book FOREIGN KEY (book_id) REFERENCES Book (id),
+    CONSTRAINT fk_bookAuthor_author FOREIGN KEY (author_id) REFERENCES Author (id)
 );
 
 CREATE TABLE BookGenre
 (
     book_id  INT NOT NULL,
     genre_id INT NOT NULL,
-    FOREIGN KEY (book_id) REFERENCES Book (id),
-    FOREIGN KEY (genre_id) REFERENCES Genre (id)
+    CONSTRAINT fk_bookGenre_book FOREIGN KEY (book_id) REFERENCES Book (id),
+    CONSTRAINT fk_bookGenre_genre FOREIGN KEY (genre_id) REFERENCES Genre (id)
 );
 
 
@@ -57,6 +57,6 @@ CREATE TABLE Form
     deadline         DATE NOT NULL,
     return_date      DATE,
     PRIMARY KEY (id),
-    FOREIGN KEY (reader_ticket_id) REFERENCES Reader_ticket (id),
-    FOREIGN KEY (book_id) REFERENCES Book (id)
+    CONSTRAINT fk_form_reader_ticket FOREIGN KEY (reader_ticket_id) REFERENCES Reader_ticket (id),
+    CONSTRAINT fk_form_book FOREIGN KEY (book_id) REFERENCES Book (id)
 );
