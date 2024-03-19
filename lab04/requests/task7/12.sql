@@ -6,3 +6,6 @@ END as LiteratureCategory
 FROM Book
 JOIN BookAuthor ON Book.id = BookAuthor.book_id
 JOIN Author ON BookAuthor.author_id = Author.id;
+
+-- книги, указав категорию «Родная литература» или «Иностранная
+-- литература»

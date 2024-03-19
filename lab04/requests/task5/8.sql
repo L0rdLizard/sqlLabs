@@ -11,3 +11,5 @@ WHERE NOT EXISTS (
         WHERE Reader_ticket.id = Form.reader_ticket_id AND Genre.id = BookGenre.genre_id
     )
 );
+
+-- читателей, читающих книги всех жанров
