@@ -32,16 +32,16 @@ CREATE TABLE IF NOT EXISTS mydb.Groupp
     group_id  INT NOT NULL AUTO_INCREMENT,
     number    INT NOT NULL,
     course_id INT NOT NULL,
-    id        INT NOT NULL,
+    Institute_id        INT NOT NULL,
     UNIQUE INDEX (group_id ASC) VISIBLE,
     PRIMARY KEY (group_id),
     INDEX Group_fk0 (course_id ASC) VISIBLE,
-    INDEX Group_fk1 (id ASC) VISIBLE,
+    INDEX Group_fk1 (Institute_id ASC) VISIBLE,
     CONSTRAINT Group_fk0
         FOREIGN KEY (course_id)
             REFERENCES mydb.Course (course_id),
     CONSTRAINT Group_fk1
-        FOREIGN KEY (id)
+        FOREIGN KEY (Institute_id)
             REFERENCES mydb.Institute (id)
 );
 
@@ -51,17 +51,12 @@ CREATE TABLE IF NOT EXISTS mydb.Student
     first_name   VARCHAR(255) NOT NULL,
     last_name    VARCHAR(255) NOT NULL,
     group_id     INT          NOT NULL,
-    Institute_id INT          NOT NULL,
     UNIQUE INDEX (student_id ASC) VISIBLE,
     PRIMARY KEY (student_id),
     INDEX Student_fk0 (group_id ASC) VISIBLE,
-    INDEX Student_fk1 (institute_id ASC) VISIBLE,
     CONSTRAINT Student_fk0
         FOREIGN KEY (group_id)
-            REFERENCES mydb.Groupp (group_id),
-    CONSTRAINT Student_fk1
-        FOREIGN KEY (institute_id)
-            REFERENCES mydb.Institute (id)
+            REFERENCES mydb.Groupp (group_id)
 );
 
 CREATE TABLE IF NOT EXISTS mydb.Conference
