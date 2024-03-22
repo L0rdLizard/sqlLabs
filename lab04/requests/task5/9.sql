@@ -8,3 +8,5 @@ WHERE NOT EXISTS (
     JOIN Genre ON BookGenre.genre_id = Genre.id
     WHERE Reader_ticket.id = Form.reader_ticket_id AND Genre.name <> 'Science Fiction'
 );
+
+-- читателей, которые читают только книги жанра 'приключени'

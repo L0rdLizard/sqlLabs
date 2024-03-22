@@ -1,10 +1,10 @@
 INSERT INTO Reader_ticket (name, passport, bd_date)
 VALUES
-    ('Denis', 401784334, '2003-07-10'),
+    ('Denis', 401784334, '2020-07-10'),
     ('Nastya', 132141214, '2002-05-02'),
     ('Maxim', 401780066, '2003-05-02'),
     ('Sergey', 402341405, '2002-11-05'),
-    ('Dima', 231355533, '2003-02-20');
+    ('Dima', 231355533, '2016-02-20');
 
 INSERT INTO Author (name, country)
 VALUES
@@ -34,7 +34,8 @@ INSERT INTO Book (book_name, book_date)
         ('Small Dream', '2017-02-05'),
         ('Classic Past', '2010-01-24'),
         ('Digital Mystery', '2013-11-17'),
-        ('Big Story', '2013-12-28');
+        ('Big Story', '2013-12-28'),
+        ('FairyTales', '1998-12-02');
 
 
 INSERT INTO BookGenre (book_id, genre_id)
@@ -53,7 +54,8 @@ INSERT INTO BookGenre (book_id, genre_id)
         (8, 2),
         (9, 3),
         (10, 3),
-        (11, 1);
+        (11, 1),
+        (12, 4);
 
 INSERT INTO BookAuthor (book_id, author_id)
     VALUES

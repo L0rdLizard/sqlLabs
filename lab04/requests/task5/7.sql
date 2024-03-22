@@ -7,3 +7,5 @@ WHERE Form.book_id IN (
     GROUP BY book_id
     HAVING COUNT(*) = 1
 );
+
+-- читателей, взЯвших книги, которые больше никому не выдавались

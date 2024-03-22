@@ -1,5 +1,7 @@
 SELECT Reader_ticket.name, COUNT(*) AS NumberOfBooks
 FROM Reader_ticket
 JOIN Form ON Reader_ticket.id = Form.reader_ticket_id
-WHERE Form.return_date IS NULL
+WHERE Form.return_date IS NOT NULL
 GROUP BY Reader_ticket.name;
+
+-- количество книг, находЯщихсЯ на руках у каждого из читателей

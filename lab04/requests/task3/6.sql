@@ -5,3 +5,5 @@ WHERE Form.return_date IS NULL
 GROUP BY Reader_ticket.name
 ORDER BY NumberOfBooks DESC
 LIMIT 1;
+
+-- читателей, у которых на руках максимальное количество книг

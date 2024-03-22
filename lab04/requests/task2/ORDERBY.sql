@@ -1,1 +1,1 @@
-SELECT book_name FROM Book ORDER BY book_date DESC;
+SELECT book_name, book_date FROM Book ORDER BY book_date DESC;
