@@ -1,2 +1,2 @@
-drop schema if exists Nastya;
-create schema Nastya;
+drop schema if exists mydb;
+create schema mydb;

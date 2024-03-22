@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS University
+CREATE TABLE IF NOT EXISTS mydb.University
 (
     university_id INT          NOT NULL AUTO_INCREMENT,
     name          VARCHAR(255) NOT NULL,
@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS University
     PRIMARY KEY (university_id)
 );
 
-CREATE TABLE IF NOT EXISTS Institute
+CREATE TABLE IF NOT EXISTS mydb.Institute
 (
     id            INT NOT NULL AUTO_INCREMENT,
     name          INT NOT NULL,
@@ -16,10 +16,10 @@ CREATE TABLE IF NOT EXISTS Institute
     INDEX Institute_fk0 (university_id ASC) VISIBLE,
     CONSTRAINT Institute_fk0
         FOREIGN KEY (university_id)
-            REFERENCES University (university_id)
+            REFERENCES mydb.University (university_id)
 );
 
-CREATE TABLE IF NOT EXISTS Course
+CREATE TABLE IF NOT EXISTS mydb.Course
 (
     course_id INT NOT NULL AUTO_INCREMENT,
     number    INT NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS Course
     PRIMARY KEY (course_id)
 );
 
-CREATE TABLE IF NOT EXISTS Groupp
+CREATE TABLE IF NOT EXISTS mydb.Groupp
 (
     group_id  INT NOT NULL AUTO_INCREMENT,
     number    INT NOT NULL,
@@ -39,13 +39,13 @@ CREATE TABLE IF NOT EXISTS Groupp
     INDEX Group_fk1 (id ASC) VISIBLE,
     CONSTRAINT Group_fk0
         FOREIGN KEY (course_id)
-            REFERENCES Course (course_id),
+            REFERENCES mydb.Course (course_id),
     CONSTRAINT Group_fk1
         FOREIGN KEY (id)
-            REFERENCES Institute (id)
+            REFERENCES mydb.Institute (id)
 );
 
-CREATE TABLE IF NOT EXISTS Student
+CREATE TABLE IF NOT EXISTS mydb.Student
 (
     student_id   INT          NOT NULL AUTO_INCREMENT,
     first_name   VARCHAR(255) NOT NULL,
@@ -56,16 +56,15 @@ CREATE TABLE IF NOT EXISTS Student
     PRIMARY KEY (student_id),
     INDEX Student_fk0 (group_id ASC) VISIBLE,
     INDEX Student_fk1 (institute_id ASC) VISIBLE,
-
     CONSTRAINT Student_fk0
         FOREIGN KEY (group_id)
-            REFERENCES Groupp (group_id),
+            REFERENCES mydb.Groupp (group_id),
     CONSTRAINT Student_fk1
         FOREIGN KEY (institute_id)
-            REFERENCES Institute (id)
+            REFERENCES mydb.Institute (id)
 );
 
-CREATE TABLE IF NOT EXISTS Conference
+CREATE TABLE IF NOT EXISTS mydb.Conference
 (
     conference_id INT          NOT NULL AUTO_INCREMENT,
     name          VARCHAR(255) NOT NULL,
@@ -73,7 +72,7 @@ CREATE TABLE IF NOT EXISTS Conference
     PRIMARY KEY (conference_id)
 );
 
-CREATE TABLE IF NOT EXISTS Conference_Theme
+CREATE TABLE IF NOT EXISTS mydb.Conference_Theme
 (
     conference_theme_id INT          NOT NULL AUTO_INCREMENT,
     name                VARCHAR(255) NOT NULL,
@@ -83,28 +82,23 @@ CREATE TABLE IF NOT EXISTS Conference_Theme
     INDEX Conference_Theme_fk0 (conference_id ASC) VISIBLE,
     CONSTRAINT Conference_Theme_fk0
         FOREIGN KEY (conference_id)
-            REFERENCES Conference (conference_id)
+            REFERENCES mydb.Conference (conference_id)
 );
 
-CREATE TABLE IF NOT EXISTS Presentation
+CREATE TABLE IF NOT EXISTS mydb.Presentation
 (
     presentation_id     INT          NOT NULL AUTO_INCREMENT,
     title               VARCHAR(255) NOT NULL,
-    author_id           INT          NOT NULL,
     conference_theme_id INT          NOT NULL,
     UNIQUE INDEX (presentation_id ASC) VISIBLE,
     PRIMARY KEY (presentation_id),
-    INDEX Presentation_fk0 (author_id ASC) VISIBLE,
     INDEX Presentation_fk1 (conference_theme_id ASC) VISIBLE,
-    CONSTRAINT Presentation_fk0
-        FOREIGN KEY (author_id)
-            REFERENCES Student (student_id),
     CONSTRAINT Presentation_fk1
         FOREIGN KEY (conference_theme_id)
-            REFERENCES Conference_Theme (conference_theme_id)
+            REFERENCES mydb.Conference_Theme (conference_theme_id)
 );
 
-CREATE TABLE IF NOT EXISTS Presentation_Theme
+CREATE TABLE IF NOT EXISTS mydb.Presentation_Theme
 (
     presentation_theme_id INT          NOT NULL AUTO_INCREMENT,
     title                 VARCHAR(255) NOT NULL,
@@ -116,13 +110,13 @@ CREATE TABLE IF NOT EXISTS Presentation_Theme
     INDEX Presentation_Theme_fk1 (conference_id ASC) VISIBLE,
     CONSTRAINT Presentation_Theme_fk0
         FOREIGN KEY (presentation_id)
-            REFERENCES Presentation (presentation_id),
+            REFERENCES mydb.Presentation (presentation_id),
     CONSTRAINT Presentation_Theme_fk1
         FOREIGN KEY (conference_id)
-            REFERENCES Conference (conference_id)
+            REFERENCES mydb.Conference (conference_id)
 );
 
-CREATE TABLE IF NOT EXISTS Student_Presentation
+CREATE TABLE IF NOT EXISTS mydb.Student_Presentation
 (
     St_P         INT NOT NULL AUTO_INCREMENT,
     student      INT NOT NULL,
@@ -132,8 +126,8 @@ CREATE TABLE IF NOT EXISTS Student_Presentation
     INDEX Student_Presentation_fk1 (presentation ASC) VISIBLE,
     CONSTRAINT Student_Presentation_fk0
         FOREIGN KEY (student)
-            REFERENCES Student (student_id),
+            REFERENCES mydb.Student (student_id),
     CONSTRAINT Student_Presentation_fk1
         FOREIGN KEY (presentation)
-            REFERENCES Presentation (presentation_id)
+            REFERENCES mydb.Presentation (presentation_id)
 );
