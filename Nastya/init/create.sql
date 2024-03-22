@@ -19,28 +19,15 @@ CREATE TABLE IF NOT EXISTS mydb.Institute
             REFERENCES mydb.University (university_id)
 );
 
-CREATE TABLE IF NOT EXISTS mydb.Course
-(
-    course_id INT NOT NULL AUTO_INCREMENT,
-    number    INT NOT NULL,
-    UNIQUE INDEX (course_id ASC) VISIBLE,
-    PRIMARY KEY (course_id)
-);
-
-CREATE TABLE IF NOT EXISTS mydb.Groupp
+CREATE TABLE IF NOT EXISTS mydb.Group
 (
     group_id  INT NOT NULL AUTO_INCREMENT,
-    number    INT NOT NULL,
-    course_id INT NOT NULL,
+    course INT NOT NULL,
     Institute_id        INT NOT NULL,
     UNIQUE INDEX (group_id ASC) VISIBLE,
     PRIMARY KEY (group_id),
-    INDEX Group_fk0 (course_id ASC) VISIBLE,
-    INDEX Group_fk1 (Institute_id ASC) VISIBLE,
+    INDEX Group_fk0 (Institute_id ASC) VISIBLE,
     CONSTRAINT Group_fk0
-        FOREIGN KEY (course_id)
-            REFERENCES mydb.Course (course_id),
-    CONSTRAINT Group_fk1
         FOREIGN KEY (Institute_id)
             REFERENCES mydb.Institute (id)
 );
@@ -56,7 +43,7 @@ CREATE TABLE IF NOT EXISTS mydb.Student
     INDEX Student_fk0 (group_id ASC) VISIBLE,
     CONSTRAINT Student_fk0
         FOREIGN KEY (group_id)
-            REFERENCES mydb.Groupp (group_id)
+            REFERENCES mydb.Group (group_id)
 );
 
 CREATE TABLE IF NOT EXISTS mydb.Conference
