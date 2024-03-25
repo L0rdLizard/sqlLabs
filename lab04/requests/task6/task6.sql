@@ -1,13 +1,5 @@
-SELECT book_name
-FROM Book
-WHERE id IN (
-    SELECT book_id
-    FROM BookAuthor
-    WHERE author_id = (
-        SELECT author_id
-        FROM BookAuthor
-        GROUP BY author_id
-        ORDER BY COUNT(*) DESC
-        LIMIT 1
-    )
-);
+INSERT INTO Book (book_name, book_date)
+SELECT 'My book', CURDATE()
+FROM dual
+WHERE NOT EXISTS
+    (SELECT 1 FROM Book WHERE book_name = 'My book');
