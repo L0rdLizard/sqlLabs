@@ -1,5 +1,4 @@
-CREATE FUNCTION GetTotalBooks(
-) RETURNS INT
+CREATE FUNCTION GetTotalBooks() RETURNS INT
     reads sql data
 BEGIN
     DECLARE total INT;

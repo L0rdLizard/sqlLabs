@@ -1,5 +1,5 @@
 INSERT INTO Book (book_name, book_date)
-SELECT 'My book', CURDATE()
+SELECT 'New Mystery', CURDATE()
 FROM dual
 WHERE NOT EXISTS
-    (SELECT 1 FROM Book WHERE book_name = 'My book');
+    (SELECT 1 FROM Book WHERE book_name = 'New Mystery');
