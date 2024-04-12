@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS mydb.Institute
     CONSTRAINT Institute_fk0
         FOREIGN KEY (university_id)
             REFERENCES mydb.University (university_id)
+            ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS mydb.Group
@@ -30,6 +31,7 @@ CREATE TABLE IF NOT EXISTS mydb.Group
     CONSTRAINT Group_fk0
         FOREIGN KEY (Institute_id)
             REFERENCES mydb.Institute (id)
+            ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS mydb.Student
@@ -44,6 +46,7 @@ CREATE TABLE IF NOT EXISTS mydb.Student
     CONSTRAINT Student_fk0
         FOREIGN KEY (group_id)
             REFERENCES mydb.Group (group_id)
+            ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS mydb.Conference
@@ -65,6 +68,7 @@ CREATE TABLE IF NOT EXISTS mydb.Conference_Theme
     CONSTRAINT Conference_Theme_fk0
         FOREIGN KEY (conference_id)
             REFERENCES mydb.Conference (conference_id)
+            ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS mydb.Presentation
@@ -78,6 +82,7 @@ CREATE TABLE IF NOT EXISTS mydb.Presentation
     CONSTRAINT Presentation_fk1
         FOREIGN KEY (conference_theme_id)
             REFERENCES mydb.Conference_Theme (conference_theme_id)
+            ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS mydb.Presentation_Theme
@@ -92,10 +97,12 @@ CREATE TABLE IF NOT EXISTS mydb.Presentation_Theme
     INDEX Presentation_Theme_fk1 (conference_id ASC) VISIBLE,
     CONSTRAINT Presentation_Theme_fk0
         FOREIGN KEY (presentation_id)
-            REFERENCES mydb.Presentation (presentation_id),
+            REFERENCES mydb.Presentation (presentation_id)
+            ON DELETE CASCADE,
     CONSTRAINT Presentation_Theme_fk1
         FOREIGN KEY (conference_id)
             REFERENCES mydb.Conference (conference_id)
+            ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS mydb.Student_Presentation
@@ -108,8 +115,10 @@ CREATE TABLE IF NOT EXISTS mydb.Student_Presentation
     INDEX Student_Presentation_fk1 (presentation ASC) VISIBLE,
     CONSTRAINT Student_Presentation_fk0
         FOREIGN KEY (student)
-            REFERENCES mydb.Student (student_id),
+            REFERENCES mydb.Student (student_id)
+            ON DELETE CASCADE,
     CONSTRAINT Student_Presentation_fk1
         FOREIGN KEY (presentation)
             REFERENCES mydb.Presentation (presentation_id)
+            ON DELETE CASCADE
 );
