@@ -9,6 +9,7 @@ CREATE TABLE Author
 (
     id      INT AUTO_INCREMENT,
     name    TEXT,
+    book_count INT,
     country VARCHAR(64),
     PRIMARY KEY (id)
 );
