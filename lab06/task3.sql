@@ -15,3 +15,5 @@ BEGIN
     INSERT INTO Book_history (book_id, old_name, new_name, change_time)
     VALUES (OLD.id, OLD.book_name, NEW.book_name, NOW());
 END;
+
+UPDATE labs.Book t SET t.book_date = '1998-12-01' WHERE t.id = 12;
